@@ -1,6 +1,6 @@
 import 'package:absensi/app/routes/app_pages.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 class AuthController extends GetxController {
@@ -8,6 +8,8 @@ class AuthController extends GetxController {
   TextEditingController passwordC = TextEditingController();
 
   FirebaseAuth auth = FirebaseAuth.instance;
+
+  User? user = FirebaseAuth.instance.currentUser;
 
   Stream<User?> streamAuthStatus() {
     var data = auth.authStateChanges();
@@ -25,9 +27,9 @@ class AuthController extends GetxController {
       Get.offAllNamed(Routes.HOME);
     } on FirebaseAuthException catch (e) {
       if (e.code == 'user-not-found') {
-        print('No user found for that email.');
+        dialogError('No user found for that email.');
       } else if (e.code == 'wrong-password') {
-        print('Wrong password provided for that user.');
+        dialogError('Wrong password provided for that user.');
       }
     }
   }
@@ -35,6 +37,24 @@ class AuthController extends GetxController {
   void logoutUser() async {
     await FirebaseAuth.instance.signOut();
     Get.offAllNamed(Routes.AUTH);
+  }
+
+  Future dialogError(String err) {
+    return Get.defaultDialog(
+        title: "Pemberitahuan",
+        content: Text(
+          err,
+          style: TextStyle(
+            fontSize: 18,
+            color: Colors.red,
+          ),
+        ),
+        onConfirm: () => Get.back(),
+        textConfirm: "Baik",
+        confirmTextColor: Colors.white,
+        buttonColor: Colors.pink,
+        contentPadding: EdgeInsets.all(20),
+        titlePadding: EdgeInsets.only(top: 20));
   }
 
   @override

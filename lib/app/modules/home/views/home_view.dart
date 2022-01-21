@@ -1,4 +1,5 @@
 import 'package:absensi/app/modules/auth/controllers/auth_controller.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -83,8 +84,8 @@ class HomeView extends GetView<HomeController> {
     );
   }
 
-  Future profileAbsen() async {
-    return await Get.defaultDialog(
+  Future profileAbsen() {
+    return Get.defaultDialog(
       title: "Profil",
       titlePadding: EdgeInsets.only(top: 20),
       contentPadding: EdgeInsets.all(20),
@@ -100,7 +101,8 @@ class HomeView extends GetView<HomeController> {
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
           Text(
-            "emailnyaronal@gmail.com",
+            // "emailnyaronal@gmail.com"
+            authC.user!.uid,
           ),
           SizedBox(height: 10),
           ElevatedButton(
