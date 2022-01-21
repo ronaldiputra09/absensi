@@ -1,6 +1,4 @@
 import 'package:absensi/app/modules/auth/controllers/auth_controller.dart';
-import 'package:absensi/app/modules/auth/views/auth_view.dart';
-import 'package:absensi/app/modules/home/views/home_view.dart';
 import 'package:absensi/app/widgets/Loading.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
