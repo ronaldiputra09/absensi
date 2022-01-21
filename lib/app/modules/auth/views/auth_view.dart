@@ -1,5 +1,4 @@
 import 'package:absensi/app/modules/auth/views/forgot_view.dart';
-import 'package:absensi/app/routes/app_pages.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -40,6 +39,7 @@ class AuthView extends GetView<AuthController> {
 
   Widget inputEmail() {
     return TextField(
+      controller: controller.emailC,
       style: TextStyle(color: Colors.pink),
       decoration: InputDecoration(
           contentPadding: EdgeInsets.symmetric(horizontal: 20, vertical: 20),
@@ -63,6 +63,7 @@ class AuthView extends GetView<AuthController> {
 
   Widget inputPassword() {
     return TextField(
+      controller: controller.passwordC,
       style: TextStyle(color: Colors.pink),
       obscureText: true,
       decoration: InputDecoration(
@@ -99,7 +100,11 @@ class AuthView extends GetView<AuthController> {
       children: [
         Expanded(
           child: ElevatedButton(
-            onPressed: () => Get.offAllNamed(Routes.HOME),
+            onPressed: () => 
+              controller.loginUser(
+                controller.emailC.text,
+                controller.passwordC.text
+              ),
             child: Text("Masuk"),
             style: ElevatedButton.styleFrom(
                 shape: RoundedRectangleBorder(

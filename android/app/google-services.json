@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "568634233538",
+    "project_id": "absensi-451bf",
+    "storage_bucket": "absensi-451bf.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:568634233538:android:55047b3b2d6cced35d215b",
+        "android_client_info": {
+          "package_name": "com.ronaldi.absensi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "568634233538-9c03v7qupr6nda8bnnaqmvntjc7111rs.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ronaldi.absensi",
+            "certificate_hash": "73f0960930be43bda48cd97433fcac5bcabd5a9d"
+          }
+        },
+        {
+          "client_id": "568634233538-ri7ak0199qsq23j22jk9re5271uhn9lc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDh6-b2GGWdCWHS711xoBtelOHxpeeLWUE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "568634233538-ri7ak0199qsq23j22jk9re5271uhn9lc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

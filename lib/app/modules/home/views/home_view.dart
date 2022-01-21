@@ -1,3 +1,4 @@
+import 'package:absensi/app/modules/auth/controllers/auth_controller.dart';
 import 'package:flutter/material.dart';
 
 import 'package:get/get.dart';
@@ -5,6 +6,7 @@ import 'package:get/get.dart';
 import '../controllers/home_controller.dart';
 
 class HomeView extends GetView<HomeController> {
+  final authC = Get.find<AuthController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -102,7 +104,7 @@ class HomeView extends GetView<HomeController> {
           ),
           SizedBox(height: 10),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () => authC.logoutUser(),
             child: Text("Keluar"),
             style: ElevatedButton.styleFrom(
               fixedSize: Size(double.maxFinite, 60),
@@ -179,7 +181,6 @@ class HomeView extends GetView<HomeController> {
                     ),
                   ),
                 ),
-              
               ],
             ),
             SizedBox(height: 20),
