@@ -13,12 +13,26 @@ class HomeView extends GetView<HomeController> {
         floatingActionButton: buttonAbsen(),
         floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
         appBar: AppBar(
+          elevation: 0,
           backgroundColor: Colors.pink,
           title: Text('ABSEN'),
           centerTitle: true,
           leading: IconButton(
-            onPressed: () => profileAbsen(),
-            icon: Icon(Icons.person_rounded),
+            onPressed: () => Get.defaultDialog(
+              title: "KELUAR",
+              middleText: "Yakin Mau Keluar?",
+              onConfirm: () {
+                Get.back();
+                Get.back();
+                authC.logoutUser();
+              },
+              textConfirm: "Yakin",
+              buttonColor: Colors.pink,
+              confirmTextColor: Colors.white,
+              textCancel: "Batal",
+              cancelTextColor: Colors.pink,
+            ),
+            icon: Icon(Icons.logout),
           ),
           actions: [
             IconButton(
@@ -27,42 +41,77 @@ class HomeView extends GetView<HomeController> {
             ),
           ],
         ),
-        body: Container(
-          padding: EdgeInsets.symmetric(horizontal: 10),
-          child: ListView.builder(
-            itemCount: 15,
-            itemBuilder: (context, index) => ListTile(
-              onTap: () {},
-              leading: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    Icons.date_range,
-                    color: Colors.pink,
+        body: Column(
+          children: [
+            Container(
+              height: 180,
+              width: double.infinity,
+              color: Colors.pink,
+              child:  
+                Obx(()=>Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(controller.tanggal.toString(), style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
+                    SizedBox(height: 10),
+                    Text( controller.jam.toString() + ' WIB',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 38,
+                      fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text('Latitude : -3928382', style: TextStyle(color: Colors.white),),
+                        SizedBox(width: 10),
+                        Text('Longitude : -129102919', style: TextStyle(color: Colors.white),),
+                      ],
+                    ),
+                    SizedBox(height: 10),
+                    Text('Indralaya', style: TextStyle(color: Colors.white),),
+                    ],
                   ),
-                ],
+                ),
               ),
-              title: Row(
-                children: [
-                  Expanded(
-                      child: Text(
-                    "Masuk : 07.30 WIB",
-                    style: TextStyle(color: Colors.red),
-                  )),
-                  SizedBox(width: 10),
-                  Expanded(
-                      child: Text(
-                    "Pulang : 07.30 WIB",
-                    style: TextStyle(color: Colors.green),
-                  )),
-                ],
+            Expanded(
+              child: ListView.builder(
+                itemCount: 15,
+                itemBuilder: (context, index) => ListTile(
+                  onTap: () {},
+                  leading: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.date_range,
+                        color: Colors.pink,
+                      ),
+                    ],
+                  ),
+                  title: Row(
+                    children: [
+                      Expanded(
+                          child: Text(
+                        "Masuk : 07.30 WIB",
+                        style: TextStyle(color: Colors.red),
+                      )),
+                      SizedBox(width: 10),
+                      Expanded(
+                          child: Text(
+                        "Pulang : 07.30 WIB",
+                        style: TextStyle(color: Colors.green),
+                      )),
+                    ],
+                  ),
+                  subtitle: Text(
+                    'Lokasi : Indralaya',
+                  ),
+                  trailing: Icon(Icons.arrow_forward_outlined),
+                ),
               ),
-              subtitle: Text(
-                'Lokasi : Indralaya',
-              ),
-              trailing: Icon(Icons.arrow_forward_outlined),
             ),
-          ),
+          ],
         ));
   }
 
@@ -70,7 +119,7 @@ class HomeView extends GetView<HomeController> {
     return Container(
       margin: EdgeInsets.symmetric(horizontal: 20),
       child: ElevatedButton(
-        onPressed: () => bottomSheetAbsen(),
+        onPressed: () => controller.getTanggal(),
         child: Text("ABSEN SEKARANG"),
         style: ElevatedButton.styleFrom(
           fixedSize: Size(double.maxFinite, 60),
@@ -79,43 +128,6 @@ class HomeView extends GetView<HomeController> {
             borderRadius: BorderRadius.circular(15),
           ),
         ),
-      ),
-    );
-  }
-
-  Future profileAbsen() {
-    return Get.defaultDialog(
-      title: "Profil",
-      titlePadding: EdgeInsets.only(top: 20),
-      contentPadding: EdgeInsets.all(20),
-      content: Column(
-        children: [
-          CircleAvatar(
-            backgroundColor: Colors.grey,
-            maxRadius: 50,
-          ),
-          SizedBox(height: 10),
-          Text(
-            "Ronaldi Putra",
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-          Text(
-            // "emailnyaronal@gmail.com"
-            authC.user!.uid,
-          ),
-          SizedBox(height: 10),
-          ElevatedButton(
-            onPressed: () => authC.logoutUser(),
-            child: Text("Keluar"),
-            style: ElevatedButton.styleFrom(
-              fixedSize: Size(double.maxFinite, 60),
-              primary: Colors.pink,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15),
-              ),
-            ),
-          ),
-        ],
       ),
     );
   }

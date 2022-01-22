@@ -10,6 +10,9 @@ dependencies:
   get: 4.6.1
   firebase_core: ^1.11.0
   firebase_auth: 3.3.5
+  intl: 0.17.0
+  geolocator: 8.0.3
+  geocoding: 2.0.2
   flutter: 
     sdk: flutter
 

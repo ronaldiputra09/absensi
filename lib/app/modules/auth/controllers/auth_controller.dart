@@ -37,6 +37,8 @@ class AuthController extends GetxController {
   void logoutUser() async {
     await FirebaseAuth.instance.signOut();
     Get.offAllNamed(Routes.AUTH);
+    emailC.clear();
+    passwordC.clear();
   }
 
   Future dialogError(String err) {
