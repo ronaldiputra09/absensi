@@ -64,13 +64,13 @@ class HomeView extends GetView<HomeController> {
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text('Latitude : -3928382', style: TextStyle(color: Colors.white),),
+                        Text('Latitude : ' + controller.latitude.toString(), style: TextStyle(color: Colors.white),),
                         SizedBox(width: 10),
-                        Text('Longitude : -129102919', style: TextStyle(color: Colors.white),),
+                        Text('Longitude : ' + controller.longitude.toString(), style: TextStyle(color: Colors.white),),
                       ],
                     ),
                     SizedBox(height: 10),
-                    Text('Indralaya', style: TextStyle(color: Colors.white),),
+                    Text(controller.alamat.toString(), style: TextStyle(color: Colors.white),),
                     ],
                   ),
                 ),
